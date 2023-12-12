@@ -1,4 +1,4 @@
-//Сначала создадим структуру CountryContext, в которой будем хранить все необходимые параметры для создания объекта City :
+//РЎРЅР°С‡Р°Р»Р° СЃРѕР·РґР°РґРёРј СЃС‚СЂСѓРєС‚СѓСЂСѓ CountryContext, РІ РєРѕС‚РѕСЂРѕР№ Р±СѓРґРµРј С…СЂР°РЅРёС‚СЊ РІСЃРµ РЅРµРѕР±С…РѕРґРёРјС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РѕР±СЉРµРєС‚Р° City :
 struct CountryContext {
     string country_name;
     string country_iso_code;
@@ -7,7 +7,7 @@ struct CountryContext {
     vector<Language> languages;
 };
 
-//Затем обновим ParseCitySubjson, чтобы она принимала CountryContext вместо всех отдельных параметров :
+//Р—Р°С‚РµРј РѕР±РЅРѕРІРёРј ParseCitySubjson, С‡С‚РѕР±С‹ РѕРЅР° РїСЂРёРЅРёРјР°Р»Р° CountryContext РІРјРµСЃС‚Рѕ РІСЃРµС… РѕС‚РґРµР»СЊРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ :
 void ParseCitySubjson(vector<City>& cities, const Json& city_list_json, const CountryContext& context) {
     for (const auto& city_json : city_list_json.AsList()) {
         const auto& city_obj = city_json.AsObject();
@@ -21,7 +21,7 @@ void ParseCitySubjson(vector<City>& cities, const Json& city_list_json, const Co
     }
 }
 
-//Теперь обновим вызов ParseCitySubjson внутри ParseCountryJson :
+//РўРµРїРµСЂСЊ РѕР±РЅРѕРІРёРј РІС‹Р·РѕРІ ParseCitySubjson РІРЅСѓС‚СЂРё ParseCountryJson :
 void ParseCountryJson(vector<Country>& countries, vector<City>& cities, const Json& json) {
     for (const auto& country_json : json.AsList()) {
         const auto& country_obj = country_json.AsObject();
@@ -47,6 +47,6 @@ void ParseCountryJson(vector<Country>& countries, vector<City>& cities, const Js
     }
 }
 
-//Теперь ParseCitySubjson и ParseCountryJson чище, и ParseCitySubjson стала более тестируемой, так как её можно вызвать с любым CountryContext, что облегчает создание, например, тестов.
-//Кроме того, если появятся новые параметры, связанные со странами, их можно будет легко добавить в CountryContext без изменения сигнатуры функции.
-//Это также улучшает расширяемость и поддерживаемость.
+//РўРµРїРµСЂСЊ ParseCitySubjson Рё ParseCountryJson С‡РёС‰Рµ, Рё ParseCitySubjson СЃС‚Р°Р»Р° Р±РѕР»РµРµ С‚РµСЃС‚РёСЂСѓРµРјРѕР№, С‚Р°Рє РєР°Рє РµС‘ РјРѕР¶РЅРѕ РІС‹Р·РІР°С‚СЊ СЃ Р»СЋР±С‹Рј CountryContext, С‡С‚Рѕ РѕР±Р»РµРіС‡Р°РµС‚ СЃРѕР·РґР°РЅРёРµ, РЅР°РїСЂРёРјРµСЂ, С‚РµСЃС‚РѕРІ.
+//РљСЂРѕРјРµ С‚РѕРіРѕ, РµСЃР»Рё РїРѕСЏРІСЏС‚СЃСЏ РЅРѕРІС‹Рµ РїР°СЂР°РјРµС‚СЂС‹, СЃРІСЏР·Р°РЅРЅС‹Рµ СЃРѕ СЃС‚СЂР°РЅР°РјРё, РёС… РјРѕР¶РЅРѕ Р±СѓРґРµС‚ Р»РµРіРєРѕ РґРѕР±Р°РІРёС‚СЊ РІ CountryContext Р±РµР· РёР·РјРµРЅРµРЅРёСЏ СЃРёРіРЅР°С‚СѓСЂС‹ С„СѓРЅРєС†РёРё.
+//Р­С‚Рѕ С‚Р°РєР¶Рµ СѓР»СѓС‡С€Р°РµС‚ СЂР°СЃС€РёСЂСЏРµРјРѕСЃС‚СЊ Рё РїРѕРґРґРµСЂР¶РёРІР°РµРјРѕСЃС‚СЊ.
