@@ -37,11 +37,11 @@ void ParseCountryJson(vector<Country>& countries, vector<City>& cities, const Js
         countries.push_back(country);
 
         CountryContext context = {
-            country.name,
-            country.iso_code,
-            country.phone_code,
-            country.time_zone,
-            country.languages
+            .country_name = country.name,
+            .country_iso_code = country.iso_code,
+            .country_phone_code = country.phone_code,
+            .country_time_zone = country.time_zone,
+            .languages = country.languages
         };
         ParseCitySubjson(cities, country_obj["cities"s], context);
     }
